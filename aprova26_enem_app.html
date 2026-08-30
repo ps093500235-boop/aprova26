@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aprova 26 — ENEM 2026</title>
+<style>
+  :root{
+    --bg:#090d18; --panel:#111827; --panel2:#172033; --text:#f8fafc; --muted:#94a3b8;
+    --primary:#7c3aed; --primary2:#22d3ee; --green:#34d399; --orange:#fb923c; --red:#fb7185;
+    --border:rgba(255,255,255,.08); --shadow:0 18px 50px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:
+    radial-gradient(circle at 15% -10%,rgba(124,58,237,.24),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(34,211,238,.15),transparent 24%),var(--bg);color:var(--text)}
+  button,input,select,textarea{font:inherit} button{cursor:pointer}
+  .app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+  aside{position:sticky;top:0;height:100vh;padding:24px 16px;border-right:1px solid var(--border);background:rgba(9,13,24,.84);backdrop-filter:blur(18px)}
+  .brand{display:flex;align-items:center;gap:10px;padding:0 10px 24px;font-weight:900;font-size:20px}
+  .logo{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 8px 24px rgba(124,58,237,.35)}
+  nav{display:grid;gap:6px}.nav{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px 14px;border-radius:12px;display:flex;gap:11px;align-items:center}
+  .nav:hover,.nav.active{background:rgba(124,58,237,.13);color:white}.nav.active{box-shadow:inset 3px 0 var(--primary)}
+  .streak{position:absolute;bottom:20px;left:16px;right:16px;padding:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(34,211,238,.08))}
+  main{padding:26px 30px 70px;max-width:1450px;width:100%;margin:auto}
+  header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px}
+  .hello h1{font-size:26px;margin:0 0 5px}.hello p{margin:0;color:var(--muted)}
+  .actions{display:flex;gap:10px;align-items:center}.pill{padding:10px 13px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.04);color:var(--text)}
+  .avatar{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#f97316,#e879f9);display:grid;place-items:center;font-weight:800}
+  .page{display:none}.page.active{display:block}.grid{display:grid;gap:16px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1.4fr 1fr}
+  .card{background:linear-gradient(180deg,rgba(23,32,51,.95),rgba(17,24,39,.95));border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+  .hero{padding:26px;background:linear-gradient(135deg,rgba(124,58,237,.32),rgba(34,211,238,.10));overflow:hidden;position:relative}
+  .hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05);right:-80px;top:-110px}
+  .hero h2{font-size:29px;max-width:620px;margin:0 0 10px}.hero p{color:#cbd5e1;max-width:700px;line-height:1.6}
+  .btn{border:0;border-radius:12px;padding:11px 15px;font-weight:750;color:white;background:linear-gradient(135deg,var(--primary),#6d28d9)}
+  .btn.secondary{background:rgba(255,255,255,.07);border:1px solid var(--border)} .btn.cyan{background:linear-gradient(135deg,#0891b2,#2563eb)}
+  .kpi{display:flex;justify-content:space-between;align-items:flex-start}.kpi strong{font-size:28px}.kpi small,.muted{color:var(--muted)}
+  .icon{width:38px;height:38px;border-radius:12px;background:rgba(124,58,237,.14);display:grid;place-items:center;font-size:18px}
+  .progress{height:8px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary2))}
+  .section-title{display:flex;justify-content:space-between;align-items:end;margin:28px 0 12px}.section-title h2{margin:0;font-size:20px}.section-title span{color:var(--muted);font-size:13px}
+  .task{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}.task:last-child{border:0}.check{width:22px;height:22px;border-radius:7px;border:2px solid #475569;appearance:none}.check:checked{background:var(--green);border-color:var(--green)}
+  .tag{font-size:11px;padding:5px 8px;border-radius:99px;background:rgba(34,211,238,.1);color:#67e8f9}
+  .bars{display:flex;align-items:end;gap:9px;height:150px;padding-top:10px}.bar{flex:1;background:linear-gradient(180deg,var(--primary2),var(--primary));border-radius:7px 7px 3px 3px;min-height:8px;opacity:.88}
+  .subject{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:center;margin:14px 0}.subject .progress{grid-column:1/-1}
+  .study-card{padding:16px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid var(--border)}.study-card h3{margin:5px 0 8px}.study-card p{font-size:13px;color:var(--muted);min-height:40px}
+  .question{font-size:18px;line-height:1.55;margin:16px 0}.option{display:block;width:100%;padding:13px;text-align:left;margin:9px 0;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px}.option:hover{border-color:#7c3aed}
+  textarea,input,select{width:100%;padding:12px 13px;border-radius:12px;border:1px solid var(--border);background:#0d1424;color:white;outline:none}textarea{min-height:260px;resize:vertical;line-height:1.6}
+  .timer{font-size:52px;font-weight:900;letter-spacing:-2px;text-align:center;margin:18px 0}.focus{text-align:center;padding:30px}
+  .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.day{min-height:86px;padding:9px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.025);font-size:12px}.day b{display:block;margin-bottom:5px}.event{padding:4px 5px;border-radius:6px;background:rgba(124,58,237,.2);margin-top:4px;color:#ddd6fe}
+  .simulado{display:flex;justify-content:space-between;align-items:center;gap:14px}.score{font-size:34px;font-weight:900;color:#67e8f9}
+  .toast{position:fixed;right:24px;bottom:24px;padding:13px 16px;border-radius:12px;background:#1e293b;border:1px solid var(--border);display:none;z-index:9}
+  @media(max-width:1050px){.g4,.g3{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+  @media(max-width:760px){.app{grid-template-columns:1fr}aside{position:fixed;z-index:5;bottom:0;top:auto;width:100%;height:auto;padding:8px;border-right:0;border-top:1px solid var(--border)}.brand,.streak{display:none}nav{grid-template-columns:repeat(6,1fr);gap:2px}.nav{font-size:0;justify-content:center;padding:10px}.nav span:first-child{font-size:19px}main{padding:18px 14px 95px}.actions .pill{display:none}.g4,.g3{grid-template-columns:1fr 1fr}.hero h2{font-size:24px}.calendar{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand"><div class="logo">A</div>Aprova 26</div>
+  <nav>
+    <button class="nav active" data-page="inicio"><span>⌂</span><span>Início</span></button>
+    <button class="nav" data-page="estudos"><span>▤</span><span>Estudar</span></button>
+    <button class="nav" data-page="questoes"><span>◉</span><span>Questões</span></button>
+    <button class="nav" data-page="redacao"><span>✎</span><span>Redação</span></button>
+    <button class="nav" data-page="simulados"><span>⏱</span><span>Simulados</span></button>
+    <button class="nav" data-page="desempenho"><span>↗</span><span>Desempenho</span></button>
+    <button class="nav" data-page="cronograma"><span>▦</span><span>Cronograma</span></button>
+    <button class="nav" data-page="foco"><span>◎</span><span>Modo Foco</span></button>
+  </nav>
+  <div class="streak"><b>🔥 12 dias de sequência</b><div class="muted" style="margin-top:5px;font-size:12px">Mais um dia rumo à aprovação.</div></div>
+</aside>
+
+<main>
+<header>
+  <div class="hello"><h1>Boa noite, estudante 👋</h1><p>Seu progresso de hoje está esperando por você.</p></div>
+  <div class="actions"><div class="pill">🔔 2</div><div class="pill">Meta: Medicina</div><div class="avatar">EN</div></div>
+</header>
+
+<section id="inicio" class="page active">
+  <div class="card hero">
+    <span class="tag">ENEM 2026</span><h2>Construa constância agora. A nota vem depois.</h2>
+    <p>Hoje: 2h30 planejadas, 36 questões e uma revisão de redação. O plano se adapta ao seu desempenho.</p>
+    <button class="btn" onclick="go('estudos')">Começar sessão →</button>
+    <button class="btn secondary" onclick="go('cronograma')">Ver cronograma</button>
+  </div>
+  <div class="grid g4" style="margin-top:16px">
+    <div class="card"><div class="kpi"><div><small>Questões hoje</small><br><strong>24</strong></div><div class="icon">✓</div></div><div class="muted">Meta: 36</div></div>
+    <div class="card"><div class="kpi"><div><small>Tempo estudado</small><br><strong>1h42</strong></div><div class="icon">⏱</div></div><div class="muted">+18 min vs. ontem</div></div>
+    <div class="card"><div class="kpi"><div><small>Taxa de acerto</small><br><strong>72%</strong></div><div class="icon">◎</div></div><div class="progress" style="margin-top:10px"><span style="width:72%"></span></div></div>
+    <div class="card"><div class="kpi"><div><small>Redações</small><br><strong>14</strong></div><div class="icon">✎</div></div><div class="muted">Última: 880 pts*</div></div>
+  </div>
+  <div class="grid g2">
+    <div>
+      <div class="section-title"><h2>Plano de hoje</h2><span>3 de 5 tarefas</span></div>
+      <div class="card">
+        <label class="task"><input class="check" type="checkbox" checked><div style="flex:1"><b>Funções exponenciais</b><div class="muted">Matemática • 35 min</div></div><span class="tag">feito</span></label>
+        <label class="task"><input class="check" type="checkbox" checked><div style="flex:1"><b>Interpretação de texto</b><div class="muted">Linguagens • 25 min</div></div><span class="tag">feito</span></label>
+        <label class="task"><input class="check" type="checkbox" checked><div style="flex:1"><b>Ecologia — revisão ativa</b><div class="muted">Biologia • 30 min</div></div><span class="tag">feito</span></label>
+        <label class="task"><input class="check" type="checkbox"><div style="flex:1"><b>12 questões de cinemática</b><div class="muted">Física • 35 min</div></div></label>
+        <label class="task"><input class="check" type="checkbox"><div style="flex:1"><b>Repertório para redação</b><div class="muted">Redação • 25 min</div></div></label>
+      </div>
+    </div>
+    <div>
+      <div class="section-title"><h2>Acertos na semana</h2><span>+6%</span></div>
+      <div class="card"><div class="bars"><div class="bar" style="height:45%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:49%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:66%"></div><div class="bar" style="height:78%"></div><div class="bar" style="height:84%"></div></div><div class="muted" style="text-align:center">seg · ter · qua · qui · sex · sáb · dom</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="estudos" class="page">
+  <div class="section-title"><h2>Trilhas de estudo</h2><span>Priorizadas pelos seus pontos fracos</span></div>
+  <div class="grid g3">
+    <div class="study-card"><span class="tag">Matemática</span><h3>Funções e gráficos</h3><p>Teoria rápida, exemplos e questões graduais.</p><div class="progress"><span style="width:62%"></span></div></div>
+    <div class="study-card"><span class="tag">Natureza</span><h3>Mecânica</h3><p>Cinemática, dinâmica, trabalho e energia.</p><div class="progress"><span style="width:41%"></span></div></div>
+    <div class="study-card"><span class="tag">Linguagens</span><h3>Interpretação</h3><p>Textos verbais, não verbais e gêneros.</p><div class="progress"><span style="width:78%"></span></div></div>
+    <div class="study-card"><span class="tag">Humanas</span><h3>Brasil República</h3><p>Contextos, processos e leitura de fontes.</p><div class="progress"><span style="width:54%"></span></div></div>
+    <div class="study-card"><span class="tag">Natureza</span><h3>Ecologia</h3><p>Ciclos, relações ecológicas e impactos.</p><div class="progress"><span style="width:83%"></span></div></div>
+    <div class="study-card"><span class="tag">Redação</span><h3>Argumentação</h3><p>Tese, repertório, encadeamento e proposta.</p><div class="progress"><span style="width:69%"></span></div></div>
+  </div>
+</section>
+
+<section id="questoes" class="page">
+  <div class="grid g2">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between"><span class="tag">Matemática • dificuldade média</span><span class="muted">Questão 1/10</span></div>
+      <div class="question">Uma população de bactérias dobra a cada 3 horas. Se inicialmente há 500 bactérias, qual expressão representa a população após <i>t</i> horas?</div>
+      <button class="option" onclick="answer(this,false)">A) 500 · 2<sup>3t</sup></button>
+      <button class="option" onclick="answer(this,true)">B) 500 · 2<sup>t/3</sup></button>
+      <button class="option" onclick="answer(this,false)">C) 500 · 3<sup>t/2</sup></button>
+      <button class="option" onclick="answer(this,false)">D) 1000 · 2<sup>t</sup></button>
+      <button class="option" onclick="answer(this,false)">E) 500 + 2t</button>
+      <div id="feedback" class="muted" style="margin-top:12px">Escolha uma alternativa.</div>
+    </div>
+    <div class="card"><h3>Filtros</h3><label>Área<select><option>Todas</option><option>Matemática</option><option>Natureza</option><option>Humanas</option><option>Linguagens</option></select></label><br><br><label>Assunto<input value="Funções" /></label><br><br><label>Dificuldade<select><option>Adaptativa</option><option>Fácil</option><option>Média</option><option>Difícil</option></select></label><br><br><button class="btn cyan" style="width:100%">Gerar lista personalizada</button></div>
+  </div>
+</section>
+
+<section id="redacao" class="page">
+  <div class="grid g2">
+    <div class="card"><span class="tag">Tema de treino</span><h2>Desafios para combater a desinformação entre jovens no Brasil</h2><textarea id="essay" placeholder="Escreva sua redação aqui..."></textarea><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span id="words" class="muted">0 palavras</span><button class="btn" onclick="toast('Redação salva no protótipo ✓')">Salvar redação</button></div></div>
+    <div class="card"><h3>Checklist de redação</h3><div class="task">✓ Tese explícita na introdução</div><div class="task">✓ Dois argumentos produtivos</div><div class="task">✓ Repertório pertinente</div><div class="task">✓ Conectivos variados</div><div class="task">✓ Proposta de intervenção completa</div><p class="muted">A nota exibida no protótipo é ilustrativa. Uma versão de produção pode integrar correção humana ou IA com critérios configuráveis.</p></div>
+  </div>
+</section>
+
+<section id="simulados" class="page">
+  <div class="section-title"><h2>Simulados</h2><span>Treine estratégia, tempo e resistência</span></div>
+  <div class="card simulado"><div><span class="tag">Completo</span><h3>Simulado ENEM — Dia 1</h3><p class="muted">Linguagens, Humanas e Redação • configuração editável</p></div><button class="btn">Iniciar</button></div><br>
+  <div class="card simulado"><div><span class="tag">Completo</span><h3>Simulado ENEM — Dia 2</h3><p class="muted">Natureza e Matemática • configuração editável</p></div><button class="btn">Iniciar</button></div><br>
+  <div class="card simulado"><div><span class="tag">Rápido</span><h3>Mini simulado adaptativo</h3><p class="muted">30 questões dos assuntos com maior índice de erro.</p></div><button class="btn cyan">Gerar agora</button></div>
+</section>
+
+<section id="desempenho" class="page">
+ <div class="grid g4"><div class="card"><small class="muted">Média de acertos</small><div class="score">72%</div></div><div class="card"><small class="muted">Questões resolvidas</small><div class="score">1.284</div></div><div class="card"><small class="muted">Horas líquidas</small><div class="score">96h</div></div><div class="card"><small class="muted">Evolução</small><div class="score">+11%</div></div></div>
+ <div class="grid g2" style="margin-top:16px"><div class="card"><h3>Domínio por área</h3>
+ <div class="subject"><span>Linguagens</span><b>76%</b><div class="progress"><span style="width:76%"></span></div></div>
+ <div class="subject"><span>Humanas</span><b>81%</b><div class="progress"><span style="width:81%"></span></div></div>
+ <div class="subject"><span>Natureza</span><b>64%</b><div class="progress"><span style="width:64%"></span></div></div>
+ <div class="subject"><span>Matemática</span><b>69%</b><div class="progress"><span style="width:69%"></span></div></div></div>
+ <div class="card"><h3>Prioridades da semana</h3><div class="task">🔴 Eletrodinâmica <span class="muted" style="margin-left:auto">46%</span></div><div class="task">🟠 Probabilidade <span class="muted" style="margin-left:auto">58%</span></div><div class="task">🟠 Química orgânica <span class="muted" style="margin-left:auto">61%</span></div><div class="task">🟢 História do Brasil <span class="muted" style="margin-left:auto">84%</span></div></div></div>
+</section>
+
+<section id="cronograma" class="page">
+  <div class="section-title"><h2>Cronograma inteligente</h2><span>Agosto • exemplo de planejamento</span></div>
+  <div class="calendar">
+    <div class="day"><b>Seg 24</b><div class="event">Matemática 40m</div><div class="event">Redação 30m</div></div>
+    <div class="day"><b>Ter 25</b><div class="event">Biologia 45m</div><div class="event">Questões 30m</div></div>
+    <div class="day"><b>Qua 26</b><div class="event">Física 45m</div></div>
+    <div class="day"><b>Qui 27</b><div class="event">Humanas 40m</div><div class="event">Revisão 25m</div></div>
+    <div class="day"><b>Sex 28</b><div class="event">Química 45m</div></div>
+    <div class="day"><b>Sáb 29</b><div class="event">Simulado 2h</div></div>
+    <div class="day"><b>Dom 30</b><div class="event">Correção + descanso</div></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Como o cronograma se adapta</h3><p class="muted">Errou muito um assunto? Ele volta antes. Acertou com consistência? O intervalo de revisão aumenta. Perdeu um dia? As tarefas são redistribuídas sem transformar a semana numa punição.</p></div>
+</section>
+
+<section id="foco" class="page">
+  <div class="card focus"><span class="tag">Pomodoro flexível</span><h2>Sessão de foco</h2><div class="timer" id="timer">25:00</div><p class="muted">Meta: terminar 12 questões de Física sem distrações.</p><button class="btn" id="timerBtn" onclick="toggleTimer()">Iniciar</button> <button class="btn secondary" onclick="resetTimer()">Reiniciar</button></div>
+</section>
+</main>
+</div>
+<div id="toast" class="toast"></div>
+<script>
+  document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+  function go(id){document.querySelectorAll('.page,.nav').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelector(`.nav[data-page="${id}"]`)?.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+  function answer(el,ok){document.querySelectorAll('.option').forEach(x=>x.style.borderColor='');el.style.borderColor=ok?'#34d399':'#fb7185';document.getElementById('feedback').innerHTML=ok?'✅ Correto. Como a quantidade dobra a cada 3 horas, o número de períodos é t/3.':'❌ Tente novamente. Pense em quantos períodos de 3 horas cabem em t.'}
+  const essay=document.getElementById('essay'); essay.addEventListener('input',()=>{let t=essay.value.trim();document.getElementById('words').textContent=(t?t.split(/\s+/).length:0)+' palavras'});
+  function toast(t){let e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2200)}
+  let seconds=1500, interval=null;
+  function renderTimer(){let m=Math.floor(seconds/60),s=seconds%60;document.getElementById('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+  function toggleTimer(){let b=document.getElementById('timerBtn'); if(interval){clearInterval(interval);interval=null;b.textContent='Continuar'}else{interval=setInterval(()=>{if(seconds>0){seconds--;renderTimer()}else{clearInterval(interval);interval=null;b.textContent='Iniciar';toast('Sessão concluída! 🔥')}},1000);b.textContent='Pausar'}}
+  function resetTimer(){clearInterval(interval);interval=null;seconds=1500;renderTimer();document.getElementById('timerBtn').textContent='Iniciar'}
+</script>
+</body>
+</html>
